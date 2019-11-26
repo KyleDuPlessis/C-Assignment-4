@@ -1,0 +1,53 @@
+Makefile rules:
+
+Makefile in project folder (Assignment4_DPLKYL002):
+
+[* - use these rules here]
+
+make - compile this project folder only
+*make all - compile the entire project 
+*make clean - clean the entire project
+
+Run program:
+
+After running "make all", first run these three commands:
+chmod 700 imageops
+chmod 700 Test
+export LD_LIBRARY_PATH=./libs
+
+Then:
+./imageops <option> [inputImageFileName1] [inputImageFileName2] [outputImageFileName]
+where <option> is "-a", "-s" or "-l"
+./imageops -i [inputImageFileName] [outputImageFileName]  
+./imageops -t [inputImageFileName] f [outputImageFileName]
+
+Note: 
+- Don't include the angle brackets, square brackets or quotation marks.
+
+Run example:
+./imageops -a sample_images/Lenna_hat_mask.pgm sample_images/Lenna_standard.pgm output/add.pgm
+./imageops -s sample_images/Lenna_hat_mask.pgm sample_images/Lenna_standard.pgm output/sub.pgm
+./imageops -l sample_images/Lenna_standard.pgm sample_images/Lenna_hat_mask.pgm output/mask.pgm
+./imageops -i sample_images/Lenna_standard.pgm output/invert.pgm
+./imageops -t sample_images/Lenna_standard.pgm 120 output/threshold.pgm
+
+Run unit tests:
+
+./Test
+
+Makefile in /libs/imagelib folder:
+
+make - compile this folder only
+make clean - clean this folder only
+
+Explanation of what each file does and how it fits into the program as a whole:
+
+Image.cpp & Image.h - These source and header files contains methods to perform the image operation functionality (image processing): 
+		add, subtract, mask, invert and threshold.
+			
+Driver.cpp - This driver source file contains the main function (entry point to the program). It parses the command line 
+	 using the argc and argv values passed into main() and uses these arguments to invoke the correct image operation function.
+	 
+Test.cpp - This source file provides unit tests for each of the sections of the code: thresholding, inverting and 
+	masking operator overloads, addition and subtraction of images, ensuring that the pixels are clamped
+	appropriately etc.
