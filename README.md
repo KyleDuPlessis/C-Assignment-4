@@ -1,2 +1,2 @@
-# C-Assignment-4
+# CSC3022H_Assign4
 Image processing (operator overloading and containers)
